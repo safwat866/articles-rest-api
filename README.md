@@ -23,33 +23,18 @@ Supports **users** and **articles** resources with authorization, policies, pagi
 - **Error Handling**:
   - Structured JSON responses for validation errors, authorization, and general exceptions
 - **API Versioning**: `/api/v1/`
-
 ---
 
-## 🔑 Authentication
 
-Use **Sanctum** to authenticate and obtain a token.
+## 📸 Screenshots
 
-**Login:**
-```
+<!-- Add your screenshots here -->
 
-POST /api/v1/auth/login
-Content-Type: application/json
 
-```
+![Screenshot 1](screenshots/screenshot1.png)
+![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 3](screenshots/screenshot3.png)
 
-Response:
-```json
-{
-  "token": "YOUR_ACCESS_TOKEN"
-}
-````
-
-Include the token in the `Authorization` header for protected routes:
-
-```
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
 
 ---
 
@@ -112,19 +97,7 @@ Example response:
 }
 ```
 
----
 
-## 📸 Screenshots
-
-<!-- Add your screenshots here -->
-
-
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
-![Screenshot 3](screenshots/screenshot3.png)
-
-
----
 
 ## ✅ Notes
 

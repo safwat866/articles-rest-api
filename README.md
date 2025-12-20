@@ -119,9 +119,9 @@ Example response:
 <!-- Add your screenshots here -->
 
 ```
-![Screenshot 1](screenshots/Screenshot%202025-12-20%20at%208.44.43 PM.png)
-![Screenshot 2](screenshots/Screenshot%202025-12-20%20at%208.44.54 PM.png)
-![Screenshot 3](screenshots/Screenshot%202025-12-20%20at%209.06.06 PM.png)
+![Screenshot 1](screenshots/screenshot1.png)
+![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 3](screenshots/screenshot3.png)
 ```
 
 ---

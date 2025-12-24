@@ -22,9 +22,9 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $user = User::where("email", $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'state' => 'error',
                 'message' => 'Invalid credentials',

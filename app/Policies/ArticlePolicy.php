@@ -13,7 +13,7 @@ class ArticlePolicy
      */
     public function view(User $user, Article $article)
     {
-        return $article->published || $user->id == $article->user_id 
+        return $article->published || $user->id == $article->user_id
                 ? Response::allow()
                 : Response::denyWithStatus(403, 'this article is not published yet!');
     }
@@ -37,5 +37,4 @@ class ArticlePolicy
             ? Response::allow()
             : Response::denyWithStatus(403, 'you are not authorized for this action');
     }
-
 }

@@ -4,9 +4,7 @@ use App\Http\Controllers\API\V1\ArticleController;
 use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 // Auth Routes
 Route::prefix('v1')->group(function () {

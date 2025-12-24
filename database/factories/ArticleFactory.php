@@ -22,7 +22,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
             'published' => $this->faker->boolean(),
-            'min_to_read' => $this->faker->randomNumber(1,10),
+            'min_to_read' => $this->faker->randomNumber(1, 10),
         ];
     }
 }

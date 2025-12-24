@@ -1,47 +1,50 @@
 <?php
 
+
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
-use App\Http\Resources\ArticleResource;
 use App\Models\Article;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        $articles = Article::where('published',true)->paginate(10);
+        $articles = Article::where('published', true)->paginate(10);
+
         return ArticleResource::collection($articles);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ArticleRequest $request)
+    public function store(ArticleRequest $request): ArticleResource
     {
-        $user = Auth::user();
-
         $data = $request->validated();
 
-        $user->articles()->create($data);
+        $user = Auth::user();
 
-        return response()->json([
-            'message' => 'article ' . $request->title . ' added sucsessfully!'
-        ],201);
+        $article = $user->articles()->create($data);
+
+        return new ArticleResource($article);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(Article $article): ArticleResource
     {
-        Gate::authorize('view', $article);
+        $this->authorize('view',$article);
 
         return new ArticleResource($article);
     }
@@ -49,32 +52,26 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ArticleRequest $request, Article $article)
+    public function update(ArticleRequest $request, Article $article): ArticleResource
     {
         $data = $request->validated();
 
-        Gate::authorize('update', $article);
+        $this->authorize('update', $article);
 
         $article->update($data);
 
-        return response()->json([
-            'message' => 'article ' . $request->title . ' updated successfuly.'
-        ],201);
+        return new ArticleResource($article);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Article $article): Response
     {
-        $title = $article->title;
-
-        Gate::authorize('delete', $article);
+        $this->authorize('delete', $article);
 
         $article->delete();
 
-        return response()->json(
-            ['message' => 'article '. $title . ' has been deleted'],201
-        );
+        return response()->noContent();
     }
 }
